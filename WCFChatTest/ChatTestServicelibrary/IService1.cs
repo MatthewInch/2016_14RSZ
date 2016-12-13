@@ -22,6 +22,8 @@ namespace ChatTestServicelibrary
 
         [OperationContract]
         string GetDefaultMessage();
+        [OperationContract]
+        void SendMessage(string Message);
 
         // TODO: Add your service operations here
     }

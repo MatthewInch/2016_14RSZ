@@ -21,6 +21,15 @@ namespace ChatTest
             InitializeComponent();
             ChatProxy proxy = ChatProxy.GetProxy();
             proxy.StartMessage = "ez az alapszöveg";
+            proxy.SetClientMessage = SetTextMessage;
+        }
+
+        public void SetTextMessage(string message)
+        {
+            txtMessages.Invoke((MethodInvoker)delegate {
+                txtMessages.Text += message + "\n";
+            }
+            );
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -28,8 +37,9 @@ namespace ChatTest
             using (ChatServiceReference.Service1Client client = new ChatServiceReference.Service1Client())
             {
                 //txtText.Text = client.CountALetter(txtText.Text).ToString();
-                txtText.Text = client.GetDefaultMessage();
-
+                //txtText.Text = client.GetDefaultMessage();
+                //client.send
+                client.SendMessage(txtText.Text);
             }
         }
 
