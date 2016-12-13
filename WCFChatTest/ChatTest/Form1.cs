@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatTestServicelibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,14 +20,16 @@ namespace ChatTest
         {
             InitializeComponent();
         }
-
+        OurProxy proxy;
         private void btnSend_Click(object sender, EventArgs e)
         {
             using (ChatServiceReference.Service1Client client = new ChatServiceReference.Service1Client())
             {
                 //txtText.Text = client.CountALetter(txtText.Text).ToString();
-                txtText.Text = client.GetDefaultMessage();
-
+                //txtText.Text = client.GetDefaultMessage();
+                proxy = OurProxy.GetProxy();
+                proxy.StartMessage = txtText.Text;
+                MessageBox.Show(client.GetDefaultMessage());
             }
         }
 
