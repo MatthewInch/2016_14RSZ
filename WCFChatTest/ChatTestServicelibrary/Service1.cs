@@ -43,5 +43,12 @@ namespace ChatTestServicelibrary
 
             return proxy.StartMessage;
         }
+
+        void SendMessage(string message)
+        {
+            proxy.GetMessage(message);
+        }
+
+        
     }
 }

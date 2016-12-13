@@ -29,9 +29,15 @@ namespace ChatTest
                 //txtText.Text = client.CountALetter(txtText.Text).ToString();
                 proxy = OurProxy.GetProxy();
                 proxy.StartMessage = txtText.Text;
+                proxy.SetClientMessage = SetTextMessage;
                 MessageBox.Show(client.GetDefaultMessage());
 
             }
+        }
+
+        private void SetTextMessage(string message)
+        {
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
