@@ -26,10 +26,16 @@ namespace ChatTest
 
         public void SetTextMessage(string message)
         {
-            txtMessages.Invoke((MethodInvoker)delegate {
-                txtMessages.Text += message + "\n";
-            }
-            );
+            //txtMessages.Invoke((MethodInvoker)delegate {
+            //    txtMessages.Text += message + "\n";
+            //}
+            //);
+
+            MethodInvoker action = delegate
+            {
+                txtMessages.Text += String.Format("{0}\r\n", message);
+            };
+            txtMessages.BeginInvoke(action);
         }
 
         private void btnSend_Click(object sender, EventArgs e)
