@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatTestServicelibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,8 @@ namespace ChatTest
         public Form1()
         {
             InitializeComponent();
+            ChatProxy proxy = ChatProxy.GetProxy();
+            proxy.StartMessage = "ez az alapszöveg";
         }
 
         private void btnSend_Click(object sender, EventArgs e)
