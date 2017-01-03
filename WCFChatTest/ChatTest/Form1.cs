@@ -20,10 +20,10 @@ namespace ChatTest
         {
             InitializeComponent();
             ChatProxy proxy = ChatProxy.GetProxy();
-            proxy.StartMessage = "ez az alapszöveg";
+            proxy.StartMessage = "Áron";
             proxy.SetClientMessage = SetTextMessage;
         }
-
+        List<ChatServiceReference.Service1Client> _partnerClients = new List<ChatServiceReference.Service1Client>();
         public void SetTextMessage(string message)
         {
             //txtMessages.Invoke((MethodInvoker)delegate {
@@ -45,7 +45,10 @@ namespace ChatTest
                 //txtText.Text = client.CountALetter(txtText.Text).ToString();
                 //txtText.Text = client.GetDefaultMessage();
                 //client.send
-                client.SendMessage(txtText.Text);
+                foreach (var item in _partnerClients)
+                {
+                    item.SendMessage(txtText.Text);
+                }
             }
         }
 
@@ -56,6 +59,33 @@ namespace ChatTest
                 _host = new ServiceHost(typeof(ChatTestServicelibrary.Service1));
                 _host.Open();
             });
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            ChatServiceReference.Service1Client client = new ChatServiceReference.Service1Client(new BasicHttpBinding(),new EndpointAddress("http://192.168.1."+txtAdd.Text+":8733/ChatService/Service1/"));
+
+            string s;
+            try
+            {              
+
+                try
+                {
+                    s = client.GetDefaultMessage();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                _partnerClients.Add(client);
+                txtMessages.Text += String.Format("{0}\r\n", s);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

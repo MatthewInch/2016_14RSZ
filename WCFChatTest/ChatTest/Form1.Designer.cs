@@ -31,6 +31,9 @@
             this.txtText = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.txtMessages = new System.Windows.Forms.TextBox();
+            this.txtAdd = new System.Windows.Forms.TextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtText
@@ -58,11 +61,39 @@
             this.txtMessages.Size = new System.Drawing.Size(414, 440);
             this.txtMessages.TabIndex = 2;
             // 
+            // txtAdd
+            // 
+            this.txtAdd.Location = new System.Drawing.Point(445, 13);
+            this.txtAdd.Name = "txtAdd";
+            this.txtAdd.Size = new System.Drawing.Size(100, 20);
+            this.txtAdd.TabIndex = 3;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(551, 13);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 4;
+            this.btnAdd.Text = "AddMember";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(459, 70);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(236, 440);
+            this.textBox1.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1060, 522);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.txtAdd);
             this.Controls.Add(this.txtMessages);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtText);
@@ -79,6 +110,9 @@
         private System.Windows.Forms.TextBox txtText;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox txtMessages;
+        private System.Windows.Forms.TextBox txtAdd;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
