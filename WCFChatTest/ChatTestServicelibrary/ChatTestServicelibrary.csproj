@@ -45,6 +45,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatProxy.cs" />
     <Compile Include="IService1.cs" />
     <Compile Include="OurProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

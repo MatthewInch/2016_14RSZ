@@ -10,11 +10,10 @@ namespace ChatTestServicelibrary
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class Service1 : IService1
     {
-        OurProxy proxy;
-        public Service1()
-        {
-            proxy = OurProxy.GetProxy();
-        }
+
+
+        private ChatProxy _proxy = ChatProxy.GetProxy();
+
         public int CountALetter(string value)
         {
             return value.Where(c => c == 'a' || c == 'A').Count();
@@ -23,6 +22,10 @@ namespace ChatTestServicelibrary
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
+        }
+
+        public Service1()
+        {
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
@@ -41,13 +44,15 @@ namespace ChatTestServicelibrary
         public string GetDefaultMessage()
         {
 
-            return proxy.StartMessage;
+            return _proxy.StartMessage;
         }
 
-        void SendMessage(string message)
+        public void SendMessage(string Message)
         {
-            proxy.GetMessage(message);
+            _proxy.GetMessage(Message);
         }
+
+
 
         
     }
