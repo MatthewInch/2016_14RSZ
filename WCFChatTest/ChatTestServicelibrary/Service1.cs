@@ -10,6 +10,8 @@ namespace ChatTestServicelibrary
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class Service1 : IService1
     {
+
+
         private ChatProxy _proxy = ChatProxy.GetProxy();
 
         public int CountALetter(string value)
@@ -41,6 +43,7 @@ namespace ChatTestServicelibrary
 
         public string GetDefaultMessage()
         {
+
             return _proxy.StartMessage;
         }
 
@@ -48,5 +51,9 @@ namespace ChatTestServicelibrary
         {
             _proxy.GetMessage(Message);
         }
+
+
+
+        
     }
 }

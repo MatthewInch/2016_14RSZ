@@ -38,15 +38,24 @@ namespace ChatTest
             txtMessages.BeginInvoke(action);
         }
 
+        OurProxy proxy;
         private void btnSend_Click(object sender, EventArgs e)
         {
             using (ChatServiceReference.Service1Client client = new ChatServiceReference.Service1Client())
             {
                 //txtText.Text = client.CountALetter(txtText.Text).ToString();
+
+
+
                 //txtText.Text = client.GetDefaultMessage();
                 //client.send
                 client.SendMessage(txtText.Text);
             }
+        }
+
+        private void SetTextMessage(string message)
+        {
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
