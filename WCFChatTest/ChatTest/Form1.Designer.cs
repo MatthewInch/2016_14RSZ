@@ -30,6 +30,7 @@
         {
             this.txtText = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtText
@@ -49,11 +50,20 @@
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(13, 101);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(309, 372);
+            this.textBox1.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1060, 522);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtText);
             this.Name = "Form1";
@@ -68,6 +78,7 @@
 
         private System.Windows.Forms.TextBox txtText;
         private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
