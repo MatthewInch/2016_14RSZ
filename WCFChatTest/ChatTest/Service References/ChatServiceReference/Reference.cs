@@ -38,6 +38,12 @@ namespace ChatTest.ChatServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDefaultMessage", ReplyAction="http://tempuri.org/IService1/GetDefaultMessageResponse")]
         System.Threading.Tasks.Task<string> GetDefaultMessageAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SendMessage", ReplyAction="http://tempuri.org/IService1/SendMessageResponse")]
+        void SendMessage(string Message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SendMessage", ReplyAction="http://tempuri.org/IService1/SendMessageResponse")]
+        System.Threading.Tasks.Task SendMessageAsync(string Message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -97,6 +103,14 @@ namespace ChatTest.ChatServiceReference {
         
         public System.Threading.Tasks.Task<string> GetDefaultMessageAsync() {
             return base.Channel.GetDefaultMessageAsync();
+        }
+        
+        public void SendMessage(string Message) {
+            base.Channel.SendMessage(Message);
+        }
+        
+        public System.Threading.Tasks.Task SendMessageAsync(string Message) {
+            return base.Channel.SendMessageAsync(Message);
         }
     }
 }
