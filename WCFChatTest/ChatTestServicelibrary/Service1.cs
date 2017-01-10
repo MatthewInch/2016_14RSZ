@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Text;
+using System.Web;
 
 namespace ChatTestServicelibrary
 {
@@ -41,12 +43,21 @@ namespace ChatTestServicelibrary
 
         public string GetDefaultMessage()
         {
-            return _proxy.StartMessage;
+            return _proxy.GetDefaultMessage(GetIP());
         }
 
         public void SendMessage(string Message)
         {
-            _proxy.GetMessage(Message);
+            _proxy.GetMessage(Message, GetIP());
+        }
+
+        private string GetIP()
+        {
+            OperationContext context = OperationContext.Current;
+            MessageProperties prop = context.IncomingMessageProperties;
+            RemoteEndpointMessageProperty endpoint =
+                prop[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
+            return endpoint.Address;
         }
     }
 }

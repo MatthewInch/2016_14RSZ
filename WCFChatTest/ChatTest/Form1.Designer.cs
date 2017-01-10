@@ -31,6 +31,9 @@
             this.txtText = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.txtMessages = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnAddPartner = new System.Windows.Forms.Button();
+            this.txtPartners = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtText
@@ -58,11 +61,40 @@
             this.txtMessages.Size = new System.Drawing.Size(414, 440);
             this.txtMessages.TabIndex = 2;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(496, 12);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(168, 20);
+            this.textBox1.TabIndex = 3;
+            this.textBox1.Text = "192.168.1.91";
+            // 
+            // btnAddPartner
+            // 
+            this.btnAddPartner.Location = new System.Drawing.Point(671, 12);
+            this.btnAddPartner.Name = "btnAddPartner";
+            this.btnAddPartner.Size = new System.Drawing.Size(75, 23);
+            this.btnAddPartner.TabIndex = 4;
+            this.btnAddPartner.Text = "Add partner";
+            this.btnAddPartner.UseVisualStyleBackColor = true;
+            this.btnAddPartner.Click += new System.EventHandler(this.btnAddPartner_Click);
+            // 
+            // txtPartners
+            // 
+            this.txtPartners.Location = new System.Drawing.Point(496, 70);
+            this.txtPartners.Multiline = true;
+            this.txtPartners.Name = "txtPartners";
+            this.txtPartners.Size = new System.Drawing.Size(347, 440);
+            this.txtPartners.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1060, 522);
+            this.Controls.Add(this.txtPartners);
+            this.Controls.Add(this.btnAddPartner);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtMessages);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtText);
@@ -79,6 +111,9 @@
         private System.Windows.Forms.TextBox txtText;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox txtMessages;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnAddPartner;
+        private System.Windows.Forms.TextBox txtPartners;
     }
 }
 
