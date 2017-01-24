@@ -13,6 +13,8 @@ namespace ChatTestServicelibrary
     {
         [OperationContract]
         string GetData(int value);
+        [OperationContract]
+        void SendMessage(string message);
 
         [OperationContract]
         int CountALetter(string value);
