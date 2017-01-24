@@ -288,25 +288,25 @@ namespace LakasSzovetkezet
 		private void attach_Flats(Flat entity)
 		{
 			this.SendPropertyChanging();
-			entity.People = this;
+			entity.Owner = this;
 		}
 		
 		private void detach_Flats(Flat entity)
 		{
 			this.SendPropertyChanging();
-			entity.People = null;
+			entity.Owner = null;
 		}
 		
 		private void attach_Flats1(Flat entity)
 		{
 			this.SendPropertyChanging();
-			entity.People1 = this;
+			entity.Resident = this;
 		}
 		
 		private void detach_Flats1(Flat entity)
 		{
 			this.SendPropertyChanging();
-			entity.People1 = null;
+			entity.Resident = null;
 		}
 	}
 	
@@ -550,7 +550,7 @@ namespace LakasSzovetkezet
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Flat", Storage="_People", ThisKey="OwnerID", OtherKey="PeopleID", IsForeignKey=true)]
-		public People People
+		public People Owner
 		{
 			get
 			{
@@ -578,13 +578,13 @@ namespace LakasSzovetkezet
 					{
 						this._OwnerID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("People");
+					this.SendPropertyChanged("Owner");
 				}
 			}
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Flat1", Storage="_People1", ThisKey="ResidentID", OtherKey="PeopleID", IsForeignKey=true)]
-		public People People1
+		public People Resident
 		{
 			get
 			{
@@ -612,7 +612,7 @@ namespace LakasSzovetkezet
 					{
 						this._ResidentID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("People1");
+					this.SendPropertyChanged("Resident");
 				}
 			}
 		}

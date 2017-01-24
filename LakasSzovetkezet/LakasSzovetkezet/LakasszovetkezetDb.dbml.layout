@@ -14,14 +14,14 @@
         <elementListCompartment Id="a6dae357-8cc7-4fe5-b3e6-40d497bf4f8a" absoluteBounds="5.7650000000000006, 1.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5 : 1.76044840494792); (5.75 : 1.76044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5 : 1.76044840494792); (5.75 : 1.76044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LakasszovetkezetDbDataContext/People/People_Flat" />
       <nodes>
         <classShapeMoniker Id="6faa467f-7d89-4e93-be60-9253aec82567" />
         <classShapeMoniker Id="de15c6fb-b818-433f-8d7b-2ba71b5ee815" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5 : 1.25522420247396); (5.75 : 1.25522420247396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5 : 1.25522420247396); (5.75 : 1.25522420247396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LakasszovetkezetDbDataContext/People/People_Flat1" />
       <nodes>
         <classShapeMoniker Id="6faa467f-7d89-4e93-be60-9253aec82567" />
@@ -34,7 +34,7 @@
         <elementListCompartment Id="53255962-858a-4e0c-9e42-aa116e761ed1" absoluteBounds="5.14, 4.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.4375 : 2.97280110677083); (6.4375 : 4.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.4375 : 2.97280110677083); (6.4375 : 4.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LakasszovetkezetDbDataContext/Flat/Flat_Deposit" />
       <nodes>
         <classShapeMoniker Id="de15c6fb-b818-433f-8d7b-2ba71b5ee815" />

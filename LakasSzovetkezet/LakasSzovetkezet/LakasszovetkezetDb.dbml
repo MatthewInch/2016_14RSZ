@@ -22,8 +22,8 @@
       <Column Name="ResidentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="OwnerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Flat_Deposit" Member="Deposits" ThisKey="FlatID" OtherKey="FlatID" Type="Deposit" />
-      <Association Name="People_Flat" Member="People" ThisKey="OwnerID" OtherKey="PeopleID" Type="People" IsForeignKey="true" />
-      <Association Name="People_Flat1" Member="People1" ThisKey="ResidentID" OtherKey="PeopleID" Type="People" IsForeignKey="true" />
+      <Association Name="People_Flat" Member="Owner" Storage="_People" ThisKey="OwnerID" OtherKey="PeopleID" Type="People" IsForeignKey="true" />
+      <Association Name="People_Flat1" Member="Resident" Storage="_People1" ThisKey="ResidentID" OtherKey="PeopleID" Type="People" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Deposit" Member="Deposits">
