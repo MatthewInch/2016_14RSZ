@@ -20,7 +20,7 @@ namespace LakasSzovetkezet
 
             if (size < 37.4)
             {
-                result = 4500;
+                result = 4500 ;
             } else if (size <43.93)
             {
                 result = 6700;
@@ -36,7 +36,7 @@ namespace LakasSzovetkezet
                 result = 13300;
             }
 
-            return result;
+            return result + radiatiors * 100;
         }
     }
 }

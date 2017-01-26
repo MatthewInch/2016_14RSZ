@@ -46,45 +46,52 @@ namespace LakasSzovetkezet
         private void cbFlat_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedFlat = cbFlat.SelectedItem as ComboHelper;
+            AccessDatabaseWithAction(selectedFlat,(LakasszovetkezetDbDataContext context,Flat flat)=> {
+
+                lbOwner.Text = flat.Owner.Name;
+                lbResident.Text = flat.Resident.Name;
+                panel1.Visible = true;
+
+                var deposits = from d in context.Deposits
+                               where d.FlatID == selectedFlat.FlatID
+                               select d;
+
+                #region Generate month checkboxes
+                flowLayoutPanel1.Controls.Clear();
+                for (int i = 1; i <= 12; i++)
+                {
+                    var month = new CheckBox();
+                    month.CheckedChanged += Month_CheckedChanged;
+
+                    var isPayed = deposits.Count(d => d.Month == i) > 0;
+                    month.Enabled = !isPayed;
+                    month.Checked = isPayed;
+
+                    month.Text = (new DateTime(2016, i, 1)).ToString("MMMM");
+                    flowLayoutPanel1.Controls.Add(month);
+                }
+                #endregion
+
+                _currentPrice = ValueHelper.CalculateValue(flat.Size ?? 0, flat.Radiators ?? 0);
+
+
+            });
+        }
+
+
+        private void AccessDatabaseWithAction(ComboHelper selectedFlat, Action<LakasszovetkezetDbDataContext,Flat> currentAction )
+        {
             if (selectedFlat != null)
             {
                 using (var context = new LakasszovetkezetDbDataContext())
                 {
                     var flat = (from f in context.Flats
-                               where f.FlatID == selectedFlat.FlatID
-                               select new { OwnerName = f.Owner.Name, ResidentName = f.Resident.Name, Size=f.Size, Radiators=f.Radiators }).FirstOrDefault();
-                    lbOwner.Text = flat.OwnerName;
-                    lbResident.Text = flat.ResidentName;
-                    panel1.Visible = true;
-
-                    var deposits = from d in context.Deposits
-                                   where d.FlatID == selectedFlat.FlatID
-                                   select d;
-
-                    #region Generate month checkboxes
-                    flowLayoutPanel1.Controls.Clear();
-                    for (int i=1;i<=12;i++)
-                    {
-                        var month = new CheckBox();
-                        month.CheckedChanged += Month_CheckedChanged;
-
-                        var isPayed = deposits.Count(d => d.Month == i) > 0;
-                        month.Enabled = !isPayed;
-                        month.Checked = isPayed;
-
-                        month.Text = (new DateTime(2016, i, 1)).ToString("MMMM");
-                        flowLayoutPanel1.Controls.Add(month);
-                    }
-                    #endregion
-
-                    _currentPrice = ValueHelper.CalculateValue(flat.Size ?? 0, flat.Radiators ?? 0);
-
-
-
+                                where f.FlatID == selectedFlat.FlatID
+                                select f).FirstOrDefault();
+                    currentAction(context,flat);
                 }
             }
         }
-
 
         private void Month_CheckedChanged(object sender, EventArgs e)
         {
@@ -104,6 +111,23 @@ namespace LakasSzovetkezet
                 
             }
             txtSumPrice.Text = sumPrice.ToString();
+        }
+
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            var selectedFlat = cbFlat.SelectedItem as ComboHelper;
+            AccessDatabaseWithAction(selectedFlat, (LakasszovetkezetDbDataContext context, Flat flat) =>
+            {
+                var newDepositValue = new Deposit();
+                newDepositValue.Flat = flat;
+                newDepositValue.DepositDate = DateTime.Now;
+                newDepositValue.DepositType = "Átutalás";
+                newDepositValue.Month = 2;
+                newDepositValue.Value = _currentPrice;
+                newDepositValue.Year = 2016;
+                context.Deposits.InsertOnSubmit(newDepositValue);
+                context.SubmitChanges();
+            });
         }
     }
 }

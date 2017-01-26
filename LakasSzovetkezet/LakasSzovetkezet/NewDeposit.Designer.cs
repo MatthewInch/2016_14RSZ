@@ -31,13 +31,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbFlat = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtSumPrice = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lbResident = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lbOwner = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.txtSumPrice = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnPay = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +62,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnPay);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtSumPrice);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
@@ -73,6 +75,29 @@
             this.panel1.Size = new System.Drawing.Size(472, 421);
             this.panel1.TabIndex = 2;
             this.panel1.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 251);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Fizetendő";
+            // 
+            // txtSumPrice
+            // 
+            this.txtSumPrice.Location = new System.Drawing.Point(64, 251);
+            this.txtSumPrice.Name = "txtSumPrice";
+            this.txtSumPrice.Size = new System.Drawing.Size(100, 20);
+            this.txtSumPrice.TabIndex = 6;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 44);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(434, 184);
+            this.flowLayoutPanel1.TabIndex = 5;
             // 
             // lbResident
             // 
@@ -108,28 +133,15 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Tulajdonos:";
             // 
-            // flowLayoutPanel1
+            // btnPay
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 44);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(434, 184);
-            this.flowLayoutPanel1.TabIndex = 5;
-            // 
-            // txtSumPrice
-            // 
-            this.txtSumPrice.Location = new System.Drawing.Point(64, 251);
-            this.txtSumPrice.Name = "txtSumPrice";
-            this.txtSumPrice.Size = new System.Drawing.Size(100, 20);
-            this.txtSumPrice.TabIndex = 6;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 251);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Fizetendő";
+            this.btnPay.Location = new System.Drawing.Point(364, 363);
+            this.btnPay.Name = "btnPay";
+            this.btnPay.Size = new System.Drawing.Size(75, 23);
+            this.btnPay.TabIndex = 8;
+            this.btnPay.Text = "Fizet";
+            this.btnPay.UseVisualStyleBackColor = true;
+            this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
             // 
             // NewDeposit
             // 
@@ -161,5 +173,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtSumPrice;
+        private System.Windows.Forms.Button btnPay;
     }
 }
