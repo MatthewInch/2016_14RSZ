@@ -46,7 +46,7 @@ namespace LakasSzovetkezet
         private void cbFlat_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedFlat = cbFlat.SelectedItem as ComboHelper;
-            AccessDatabaseWithAction(selectedFlat,(LakasszovetkezetDbDataContext context,Flat flat)=> {
+            AccessDatabaseWithAction(selectedFlat,(context,flat)=> {
 
                 lbOwner.Text = flat.Owner.Name;
                 lbResident.Text = flat.Resident.Name;
