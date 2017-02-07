@@ -19,15 +19,26 @@ namespace ChatTestServicelibrary
             return _instance;
         }
 
-        public Action<string> SetClientMessage;
+        public Action<string, string> SetClientMessageAction { get; set; }
+
+        public Action<string> GetDefaultMessageAction { get; set; }
 
         public string StartMessage { get; set; }
 
-        public void GetMessage(string message)
+        public string GetDefaultMessage(string address)
         {
-            if (SetClientMessage != null)
+            if (GetDefaultMessageAction != null)
             {
-                SetClientMessage(message);
+                GetDefaultMessageAction(address);
+            }
+            return StartMessage;
+        }
+
+        public void GetMessage(string message, string address)
+        {
+            if (SetClientMessageAction != null)
+            {
+                SetClientMessageAction(message, address);
             }
         }
     }

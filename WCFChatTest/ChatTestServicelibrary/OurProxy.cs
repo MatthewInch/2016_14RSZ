@@ -12,8 +12,9 @@ namespace ChatTestServicelibrary
 
         private OurProxy()
         {
-
         }
+
+        public Action<string> SetClientMessage { get; set; }
 
         public static OurProxy GetProxy()
         {
@@ -21,5 +22,9 @@ namespace ChatTestServicelibrary
         }
 
         public string StartMessage { get; set; }
+        public void GetMessage(string message)
+        {
+            
+        }
     }
 }

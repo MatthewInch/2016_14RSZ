@@ -15,43 +15,60 @@ namespace ChatTest
     public partial class Form1 : Form
     {
         private ServiceHost _host;
+        private List<ChatServiceReference.Service1Client> _PartnerClients = new List<ChatServiceReference.Service1Client>();
+        private Dictionary<string, string> _partnersName = new Dictionary<string, string>();
 
         public Form1()
         {
             InitializeComponent();
             ChatProxy proxy = ChatProxy.GetProxy();
-            proxy.StartMessage = "Áron";
-            proxy.SetClientMessage = SetTextMessage;
+            proxy.StartMessage = "Szőke Mátyás";
+            proxy.SetClientMessageAction = SetTextMessage;
+            proxy.GetDefaultMessageAction = GetDefaultMessage;
         }
-        List<ChatServiceReference.Service1Client> _partnerClients = new List<ChatServiceReference.Service1Client>();
-        public void SetTextMessage(string message)
-        {
-            //txtMessages.Invoke((MethodInvoker)delegate {
-            //    txtMessages.Text += message + "\n";
-            //}
-            //);
 
+        private void GetDefaultMessage(string address)
+        {
+            if (_partnersName.ContainsKey(address))
+            {
+                MethodInvoker action = delegate
+                {
+                    txtMessages.Text += $"{_partnersName[address]} is in the clients list again.\r\n";
+                };
+                txtMessages.BeginInvoke(action);
+            }
+            else
+            {
+                AddClient(address);
+                MethodInvoker action = delegate
+                {
+                    txtMessages.Text += $"New client: {address}\r\n";
+                };
+                txtMessages.BeginInvoke(action);
+            }
+        }
+
+        public void SetTextMessage(string message,string address)
+        {
+            string name = address;
+            if (_partnersName.ContainsKey(address))
+            {
+                name = _partnersName[address];
+            }
             MethodInvoker action = delegate
             {
-                txtMessages.Text += String.Format("{0}\r\n", message);
+                txtMessages.Text += $"{name}: {message}\r\n";
             };
             txtMessages.BeginInvoke(action);
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            using (ChatServiceReference.Service1Client client = new ChatServiceReference.Service1Client())
+            foreach (var client in _PartnerClients)
             {
-                //txtText.Text = client.CountALetter(txtText.Text).ToString();
-                //txtText.Text = client.GetDefaultMessage();
-                //client.send
-                foreach (var item in _partnerClients)
-                {
-                    item.SendMessage(txtText.Text);
-                }
+                client.SendMessage(txtText.Text);
             }
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             Task.Factory.StartNew(() =>
@@ -61,30 +78,41 @@ namespace ChatTest
             });
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnAddPartner_Click(object sender, EventArgs e)
         {
-            ChatServiceReference.Service1Client client = new ChatServiceReference.Service1Client(new BasicHttpBinding(),new EndpointAddress("http://192.168.1."+txtAdd.Text+":8733/ChatService/Service1/"));
+            AddClient(textBox1.Text);
+        }
 
-            string s;
+        private void AddClient(string address)
+        {
             try
-            {              
+            {
+                var myBinding = new BasicHttpBinding();
+                var myEndpointAddress = new EndpointAddress($"http://{address}:8733/ChatService/Service1/");
 
+                ChatServiceReference.Service1Client client = new ChatServiceReference.Service1Client(myBinding, myEndpointAddress);
                 try
                 {
-                    s = client.GetDefaultMessage();
+                    if (_partnersName.ContainsKey(address))
+                    { }
+                    else
+                    {
+                        _partnersName.Add(address, address);
+                        var name = client.GetDefaultMessage();
+                        _partnersName[address] = name;
+                        _PartnerClients.Add(client);
+                        txtPartners.Text += $"Partner: {name} hozzáadva.\n";
+                    }
                 }
-                catch (Exception)
+                catch (Exception getEx)
                 {
-
-                    throw;
+                    txtPartners.Text += $"Error: {getEx.Message}\n";
                 }
-                _partnerClients.Add(client);
-                txtMessages.Text += String.Format("{0}\r\n", s);
-            }
-            catch (Exception)
-            {
 
-                throw;
+            }
+            catch (Exception ex)
+            {
+                txtPartners.Text += $"Error: {ex.Message}\n";
             }
         }
     }
