@@ -16,7 +16,7 @@ namespace LakasSzovetkezet
 
         public class ComboHelper
         {
-            public string Stairway { get; set; }
+            public int? Stairway { get; set; }
             public int? Floor { get; set; }
             public int? FlatNumber { get; set; }
             public int FlatID { get; set; }
@@ -67,7 +67,7 @@ namespace LakasSzovetkezet
                     month.Enabled = !isPayed;
                     month.Checked = isPayed;
 
-                    month.Text = (new DateTime(2016, i, 1)).ToString("MMMM");
+                    month.Text = (new DateTime(2017, i, 1)).ToString("MMMM");
                     flowLayoutPanel1.Controls.Add(month);
                 }
                 #endregion
@@ -118,15 +118,23 @@ namespace LakasSzovetkezet
             var selectedFlat = cbFlat.SelectedItem as ComboHelper;
             AccessDatabaseWithAction(selectedFlat, (LakasszovetkezetDbDataContext context, Flat flat) =>
             {
-                var newDepositValue = new Deposit();
-                newDepositValue.Flat = flat;
-                newDepositValue.DepositDate = DateTime.Now;
-                newDepositValue.DepositType = "Átutalás";
-                newDepositValue.Month = 2;
-                newDepositValue.Value = _currentPrice;
-                newDepositValue.Year = 2016;
-                context.Deposits.InsertOnSubmit(newDepositValue);
-                context.SubmitChanges();
+                for (int i = 0; i < flowLayoutPanel1.Controls.Count; i++)
+                {
+                    if ((flowLayoutPanel1.Controls[i] as CheckBox).Checked && (flowLayoutPanel1.Controls[i] as CheckBox).Enabled)
+                    {
+                        var newDepositValue = new Deposit();
+                        newDepositValue.Flat = flat;
+                        newDepositValue.DepositDate = DateTime.Now;
+                        newDepositValue.DepositType = "Átutalás";
+                        newDepositValue.Month = i+1;
+                        newDepositValue.Value = _currentPrice;
+                        newDepositValue.Year = 2017;
+                        context.Deposits.InsertOnSubmit(newDepositValue);
+                        context.SubmitChanges();
+                        MessageBox.Show("A befizetés sikerült!");
+                    }
+                }
+
             });
         }
     }

@@ -33,5 +33,16 @@ namespace LakasSzovetkezet.Properties {
                 return ((string)(this["LakaszovetkezetConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=lakassql;Integrated Security=T" +
+            "rue;Pooling=False")]
+        public string lakassqlConnectionString {
+            get {
+                return ((string)(this["lakassqlConnectionString"]));
+            }
+        }
     }
 }

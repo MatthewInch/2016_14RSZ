@@ -22,5 +22,16 @@ namespace LakasSzovetkezet
             var newDepositForm = new NewDeposit();
             newDepositForm.Show();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            var ReportForm = new Report();
+            ReportForm.Show();
+        }
     }
 }

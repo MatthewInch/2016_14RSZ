@@ -22,7 +22,7 @@ namespace LakasSzovetkezet
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Lakaszovetkezet")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="lakassql")]
 	public partial class LakasszovetkezetDbDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,19 +30,19 @@ namespace LakasSzovetkezet
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertPeople(People instance);
-    partial void UpdatePeople(People instance);
-    partial void DeletePeople(People instance);
-    partial void InsertFlat(Flat instance);
-    partial void UpdateFlat(Flat instance);
-    partial void DeleteFlat(Flat instance);
     partial void InsertDeposit(Deposit instance);
     partial void UpdateDeposit(Deposit instance);
     partial void DeleteDeposit(Deposit instance);
+    partial void InsertFlat(Flat instance);
+    partial void UpdateFlat(Flat instance);
+    partial void DeleteFlat(Flat instance);
+    partial void InsertPeople(People instance);
+    partial void UpdatePeople(People instance);
+    partial void DeletePeople(People instance);
     #endregion
 		
 		public LakasszovetkezetDbDataContext() : 
-				base(global::LakasSzovetkezet.Properties.Settings.Default.LakaszovetkezetConnectionString, mappingSource)
+				base(global::LakasSzovetkezet.Properties.Settings.Default.lakassqlConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -71,11 +71,11 @@ namespace LakasSzovetkezet
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<People> Peoples
+		public System.Data.Linq.Table<Deposit> Deposits
 		{
 			get
 			{
-				return this.GetTable<People>();
+				return this.GetTable<Deposit>();
 			}
 		}
 		
@@ -87,12 +87,595 @@ namespace LakasSzovetkezet
 			}
 		}
 		
-		public System.Data.Linq.Table<Deposit> Deposits
+		public System.Data.Linq.Table<People> Peoples
 		{
 			get
 			{
-				return this.GetTable<Deposit>();
+				return this.GetTable<People>();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Deposit")]
+	public partial class Deposit : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _Year;
+		
+		private System.Nullable<int> _Month;
+		
+		private System.Nullable<int> _Value;
+		
+		private string _DepositType;
+		
+		private System.Nullable<int> _FlatID;
+		
+		private System.Nullable<System.DateTime> _DepositDate;
+		
+		private EntityRef<Flat> _Flat;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnYearChanging(System.Nullable<int> value);
+    partial void OnYearChanged();
+    partial void OnMonthChanging(System.Nullable<int> value);
+    partial void OnMonthChanged();
+    partial void OnValueChanging(System.Nullable<int> value);
+    partial void OnValueChanged();
+    partial void OnDepositTypeChanging(string value);
+    partial void OnDepositTypeChanged();
+    partial void OnFlatIDChanging(System.Nullable<int> value);
+    partial void OnFlatIDChanged();
+    partial void OnDepositDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDepositDateChanged();
+    #endregion
+		
+		public Deposit()
+		{
+			this._Flat = default(EntityRef<Flat>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int")]
+		public System.Nullable<int> Year
+		{
+			get
+			{
+				return this._Year;
+			}
+			set
+			{
+				if ((this._Year != value))
+				{
+					this.OnYearChanging(value);
+					this.SendPropertyChanging();
+					this._Year = value;
+					this.SendPropertyChanged("Year");
+					this.OnYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Month", DbType="Int")]
+		public System.Nullable<int> Month
+		{
+			get
+			{
+				return this._Month;
+			}
+			set
+			{
+				if ((this._Month != value))
+				{
+					this.OnMonthChanging(value);
+					this.SendPropertyChanging();
+					this._Month = value;
+					this.SendPropertyChanged("Month");
+					this.OnMonthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="Int")]
+		public System.Nullable<int> Value
+		{
+			get
+			{
+				return this._Value;
+			}
+			set
+			{
+				if ((this._Value != value))
+				{
+					this.OnValueChanging(value);
+					this.SendPropertyChanging();
+					this._Value = value;
+					this.SendPropertyChanged("Value");
+					this.OnValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepositType", DbType="NChar(10)")]
+		public string DepositType
+		{
+			get
+			{
+				return this._DepositType;
+			}
+			set
+			{
+				if ((this._DepositType != value))
+				{
+					this.OnDepositTypeChanging(value);
+					this.SendPropertyChanging();
+					this._DepositType = value;
+					this.SendPropertyChanged("DepositType");
+					this.OnDepositTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="LakasId", Storage="_FlatID", DbType="Int")]
+		public System.Nullable<int> FlatID
+		{
+			get
+			{
+				return this._FlatID;
+			}
+			set
+			{
+				if ((this._FlatID != value))
+				{
+					this.OnFlatIDChanging(value);
+					this.SendPropertyChanging();
+					this._FlatID = value;
+					this.SendPropertyChanged("FlatID");
+					this.OnFlatIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepositDate", DbType="Date")]
+		public System.Nullable<System.DateTime> DepositDate
+		{
+			get
+			{
+				return this._DepositDate;
+			}
+			set
+			{
+				if ((this._DepositDate != value))
+				{
+					this.OnDepositDateChanging(value);
+					this.SendPropertyChanging();
+					this._DepositDate = value;
+					this.SendPropertyChanged("DepositDate");
+					this.OnDepositDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Flat_Deposit", Storage="_Flat", ThisKey="FlatID", OtherKey="FlatID", IsForeignKey=true)]
+		public Flat Flat
+		{
+			get
+			{
+				return this._Flat.Entity;
+			}
+			set
+			{
+				Flat previousValue = this._Flat.Entity;
+				if (((previousValue != value) 
+							|| (this._Flat.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Flat.Entity = null;
+						previousValue.Deposits.Remove(this);
+					}
+					this._Flat.Entity = value;
+					if ((value != null))
+					{
+						value.Deposits.Add(this);
+						this._FlatID = value.FlatID;
+					}
+					else
+					{
+						this._FlatID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Flat");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Flat")]
+	public partial class Flat : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _FlatID;
+		
+		private System.Nullable<double> _Size;
+		
+		private System.Nullable<int> _Radiators;
+		
+		private System.Nullable<int> _Stairway;
+		
+		private System.Nullable<int> _Floor;
+		
+		private System.Nullable<int> _FlatNumber;
+		
+		private System.Nullable<int> _ResidentID;
+		
+		private System.Nullable<int> _OwnerID;
+		
+		private EntitySet<Deposit> _Deposits;
+		
+		private EntityRef<People> _Owner;
+		
+		private EntityRef<People> _Resident;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFlatIDChanging(int value);
+    partial void OnFlatIDChanged();
+    partial void OnSizeChanging(System.Nullable<double> value);
+    partial void OnSizeChanged();
+    partial void OnRadiatorsChanging(System.Nullable<int> value);
+    partial void OnRadiatorsChanged();
+    partial void OnStairwayChanging(System.Nullable<int> value);
+    partial void OnStairwayChanged();
+    partial void OnFloorChanging(System.Nullable<int> value);
+    partial void OnFloorChanged();
+    partial void OnFlatNumberChanging(System.Nullable<int> value);
+    partial void OnFlatNumberChanged();
+    partial void OnResidentIDChanging(System.Nullable<int> value);
+    partial void OnResidentIDChanged();
+    partial void OnOwnerIDChanging(System.Nullable<int> value);
+    partial void OnOwnerIDChanged();
+    #endregion
+		
+		public Flat()
+		{
+			this._Deposits = new EntitySet<Deposit>(new Action<Deposit>(this.attach_Deposits), new Action<Deposit>(this.detach_Deposits));
+			this._Owner = default(EntityRef<People>);
+			this._Resident = default(EntityRef<People>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="FlatId", Storage="_FlatID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int FlatID
+		{
+			get
+			{
+				return this._FlatID;
+			}
+			set
+			{
+				if ((this._FlatID != value))
+				{
+					this.OnFlatIDChanging(value);
+					this.SendPropertyChanging();
+					this._FlatID = value;
+					this.SendPropertyChanged("FlatID");
+					this.OnFlatIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Size", DbType="Float")]
+		public System.Nullable<double> Size
+		{
+			get
+			{
+				return this._Size;
+			}
+			set
+			{
+				if ((this._Size != value))
+				{
+					this.OnSizeChanging(value);
+					this.SendPropertyChanging();
+					this._Size = value;
+					this.SendPropertyChanged("Size");
+					this.OnSizeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Radiator", Storage="_Radiators", DbType="Int")]
+		public System.Nullable<int> Radiators
+		{
+			get
+			{
+				return this._Radiators;
+			}
+			set
+			{
+				if ((this._Radiators != value))
+				{
+					this.OnRadiatorsChanging(value);
+					this.SendPropertyChanging();
+					this._Radiators = value;
+					this.SendPropertyChanged("Radiators");
+					this.OnRadiatorsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stairway", DbType="Int")]
+		public System.Nullable<int> Stairway
+		{
+			get
+			{
+				return this._Stairway;
+			}
+			set
+			{
+				if ((this._Stairway != value))
+				{
+					this.OnStairwayChanging(value);
+					this.SendPropertyChanging();
+					this._Stairway = value;
+					this.SendPropertyChanged("Stairway");
+					this.OnStairwayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Floor", DbType="Int")]
+		public System.Nullable<int> Floor
+		{
+			get
+			{
+				return this._Floor;
+			}
+			set
+			{
+				if ((this._Floor != value))
+				{
+					this.OnFloorChanging(value);
+					this.SendPropertyChanging();
+					this._Floor = value;
+					this.SendPropertyChanged("Floor");
+					this.OnFloorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Flatnumber", Storage="_FlatNumber", DbType="Int")]
+		public System.Nullable<int> FlatNumber
+		{
+			get
+			{
+				return this._FlatNumber;
+			}
+			set
+			{
+				if ((this._FlatNumber != value))
+				{
+					this.OnFlatNumberChanging(value);
+					this.SendPropertyChanging();
+					this._FlatNumber = value;
+					this.SendPropertyChanged("FlatNumber");
+					this.OnFlatNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResidentID", DbType="Int")]
+		public System.Nullable<int> ResidentID
+		{
+			get
+			{
+				return this._ResidentID;
+			}
+			set
+			{
+				if ((this._ResidentID != value))
+				{
+					if (this._Resident.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnResidentIDChanging(value);
+					this.SendPropertyChanging();
+					this._ResidentID = value;
+					this.SendPropertyChanged("ResidentID");
+					this.OnResidentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerID", DbType="Int")]
+		public System.Nullable<int> OwnerID
+		{
+			get
+			{
+				return this._OwnerID;
+			}
+			set
+			{
+				if ((this._OwnerID != value))
+				{
+					if (this._Owner.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOwnerIDChanging(value);
+					this.SendPropertyChanging();
+					this._OwnerID = value;
+					this.SendPropertyChanged("OwnerID");
+					this.OnOwnerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Flat_Deposit", Storage="_Deposits", ThisKey="FlatID", OtherKey="FlatID")]
+		public EntitySet<Deposit> Deposits
+		{
+			get
+			{
+				return this._Deposits;
+			}
+			set
+			{
+				this._Deposits.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Flat", Storage="_Owner", ThisKey="OwnerID", OtherKey="PeopleId", IsForeignKey=true)]
+		public People Owner
+		{
+			get
+			{
+				return this._Owner.Entity;
+			}
+			set
+			{
+				People previousValue = this._Owner.Entity;
+				if (((previousValue != value) 
+							|| (this._Owner.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Owner.Entity = null;
+						previousValue.Flats.Remove(this);
+					}
+					this._Owner.Entity = value;
+					if ((value != null))
+					{
+						value.Flats.Add(this);
+						this._OwnerID = value.PeopleId;
+					}
+					else
+					{
+						this._OwnerID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Owner");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Flat1", Storage="_Resident", ThisKey="ResidentID", OtherKey="PeopleId", IsForeignKey=true)]
+		public People Resident
+		{
+			get
+			{
+				return this._Resident.Entity;
+			}
+			set
+			{
+				People previousValue = this._Resident.Entity;
+				if (((previousValue != value) 
+							|| (this._Resident.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Resident.Entity = null;
+						previousValue.Flats1.Remove(this);
+					}
+					this._Resident.Entity = value;
+					if ((value != null))
+					{
+						value.Flats1.Add(this);
+						this._ResidentID = value.PeopleId;
+					}
+					else
+					{
+						this._ResidentID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Resident");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Deposits(Deposit entity)
+		{
+			this.SendPropertyChanging();
+			entity.Flat = this;
+		}
+		
+		private void detach_Deposits(Deposit entity)
+		{
+			this.SendPropertyChanging();
+			entity.Flat = null;
 		}
 	}
 	
@@ -102,6 +685,8 @@ namespace LakasSzovetkezet
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private int _PeopleId;
+		
 		private string _Name;
 		
 		private string _Address;
@@ -109,8 +694,6 @@ namespace LakasSzovetkezet
 		private string _PhoneNumber;
 		
 		private string _Email;
-		
-		private int _PeopleID;
 		
 		private EntitySet<Flat> _Flats;
 		
@@ -120,6 +703,8 @@ namespace LakasSzovetkezet
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnPeopleIdChanging(int value);
+    partial void OnPeopleIdChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
     partial void OnAddressChanging(string value);
@@ -128,8 +713,6 @@ namespace LakasSzovetkezet
     partial void OnPhoneNumberChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
-    partial void OnPeopleIDChanging(int value);
-    partial void OnPeopleIDChanged();
     #endregion
 		
 		public People()
@@ -139,7 +722,27 @@ namespace LakasSzovetkezet
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PeopleId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PeopleId
+		{
+			get
+			{
+				return this._PeopleId;
+			}
+			set
+			{
+				if ((this._PeopleId != value))
+				{
+					this.OnPeopleIdChanging(value);
+					this.SendPropertyChanging();
+					this._PeopleId = value;
+					this.SendPropertyChanged("PeopleId");
+					this.OnPeopleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50)")]
 		public string Name
 		{
 			get
@@ -159,7 +762,7 @@ namespace LakasSzovetkezet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(50)")]
 		public string Address
 		{
 			get
@@ -219,27 +822,7 @@ namespace LakasSzovetkezet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PeopleID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int PeopleID
-		{
-			get
-			{
-				return this._PeopleID;
-			}
-			set
-			{
-				if ((this._PeopleID != value))
-				{
-					this.OnPeopleIDChanging(value);
-					this.SendPropertyChanging();
-					this._PeopleID = value;
-					this.SendPropertyChanged("PeopleID");
-					this.OnPeopleIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Flat", Storage="_Flats", ThisKey="PeopleID", OtherKey="OwnerID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Flat", Storage="_Flats", ThisKey="PeopleId", OtherKey="OwnerID")]
 		public EntitySet<Flat> Flats
 		{
 			get
@@ -252,7 +835,7 @@ namespace LakasSzovetkezet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Flat1", Storage="_Flats1", ThisKey="PeopleID", OtherKey="ResidentID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Flat1", Storage="_Flats1", ThisKey="PeopleId", OtherKey="ResidentID")]
 		public EntitySet<Flat> Flats1
 		{
 			get
@@ -307,593 +890,6 @@ namespace LakasSzovetkezet
 		{
 			this.SendPropertyChanging();
 			entity.Resident = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Flat")]
-	public partial class Flat : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _FlatID;
-		
-		private System.Nullable<double> _Size;
-		
-		private System.Nullable<int> _Radiators;
-		
-		private string _Stairway;
-		
-		private System.Nullable<int> _Floor;
-		
-		private System.Nullable<int> _FlatNumber;
-		
-		private System.Nullable<int> _ResidentID;
-		
-		private System.Nullable<int> _OwnerID;
-		
-		private EntitySet<Deposit> _Deposits;
-		
-		private EntityRef<People> _People;
-		
-		private EntityRef<People> _People1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnFlatIDChanging(int value);
-    partial void OnFlatIDChanged();
-    partial void OnSizeChanging(System.Nullable<double> value);
-    partial void OnSizeChanged();
-    partial void OnRadiatorsChanging(System.Nullable<int> value);
-    partial void OnRadiatorsChanged();
-    partial void OnStairwayChanging(string value);
-    partial void OnStairwayChanged();
-    partial void OnFloorChanging(System.Nullable<int> value);
-    partial void OnFloorChanged();
-    partial void OnFlatNumberChanging(System.Nullable<int> value);
-    partial void OnFlatNumberChanged();
-    partial void OnResidentIDChanging(System.Nullable<int> value);
-    partial void OnResidentIDChanged();
-    partial void OnOwnerIDChanging(System.Nullable<int> value);
-    partial void OnOwnerIDChanged();
-    #endregion
-		
-		public Flat()
-		{
-			this._Deposits = new EntitySet<Deposit>(new Action<Deposit>(this.attach_Deposits), new Action<Deposit>(this.detach_Deposits));
-			this._People = default(EntityRef<People>);
-			this._People1 = default(EntityRef<People>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FlatID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int FlatID
-		{
-			get
-			{
-				return this._FlatID;
-			}
-			set
-			{
-				if ((this._FlatID != value))
-				{
-					this.OnFlatIDChanging(value);
-					this.SendPropertyChanging();
-					this._FlatID = value;
-					this.SendPropertyChanged("FlatID");
-					this.OnFlatIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Size", DbType="Float")]
-		public System.Nullable<double> Size
-		{
-			get
-			{
-				return this._Size;
-			}
-			set
-			{
-				if ((this._Size != value))
-				{
-					this.OnSizeChanging(value);
-					this.SendPropertyChanging();
-					this._Size = value;
-					this.SendPropertyChanged("Size");
-					this.OnSizeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Radiators", DbType="Int")]
-		public System.Nullable<int> Radiators
-		{
-			get
-			{
-				return this._Radiators;
-			}
-			set
-			{
-				if ((this._Radiators != value))
-				{
-					this.OnRadiatorsChanging(value);
-					this.SendPropertyChanging();
-					this._Radiators = value;
-					this.SendPropertyChanged("Radiators");
-					this.OnRadiatorsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stairway", DbType="NVarChar(10)")]
-		public string Stairway
-		{
-			get
-			{
-				return this._Stairway;
-			}
-			set
-			{
-				if ((this._Stairway != value))
-				{
-					this.OnStairwayChanging(value);
-					this.SendPropertyChanging();
-					this._Stairway = value;
-					this.SendPropertyChanged("Stairway");
-					this.OnStairwayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Floor", DbType="Int")]
-		public System.Nullable<int> Floor
-		{
-			get
-			{
-				return this._Floor;
-			}
-			set
-			{
-				if ((this._Floor != value))
-				{
-					this.OnFloorChanging(value);
-					this.SendPropertyChanging();
-					this._Floor = value;
-					this.SendPropertyChanged("Floor");
-					this.OnFloorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FlatNumber", DbType="Int")]
-		public System.Nullable<int> FlatNumber
-		{
-			get
-			{
-				return this._FlatNumber;
-			}
-			set
-			{
-				if ((this._FlatNumber != value))
-				{
-					this.OnFlatNumberChanging(value);
-					this.SendPropertyChanging();
-					this._FlatNumber = value;
-					this.SendPropertyChanged("FlatNumber");
-					this.OnFlatNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ResidentID", DbType="Int")]
-		public System.Nullable<int> ResidentID
-		{
-			get
-			{
-				return this._ResidentID;
-			}
-			set
-			{
-				if ((this._ResidentID != value))
-				{
-					if (this._People1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnResidentIDChanging(value);
-					this.SendPropertyChanging();
-					this._ResidentID = value;
-					this.SendPropertyChanged("ResidentID");
-					this.OnResidentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerID", DbType="Int")]
-		public System.Nullable<int> OwnerID
-		{
-			get
-			{
-				return this._OwnerID;
-			}
-			set
-			{
-				if ((this._OwnerID != value))
-				{
-					if (this._People.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnOwnerIDChanging(value);
-					this.SendPropertyChanging();
-					this._OwnerID = value;
-					this.SendPropertyChanged("OwnerID");
-					this.OnOwnerIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Flat_Deposit", Storage="_Deposits", ThisKey="FlatID", OtherKey="FlatID")]
-		public EntitySet<Deposit> Deposits
-		{
-			get
-			{
-				return this._Deposits;
-			}
-			set
-			{
-				this._Deposits.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Flat", Storage="_People", ThisKey="OwnerID", OtherKey="PeopleID", IsForeignKey=true)]
-		public People Owner
-		{
-			get
-			{
-				return this._People.Entity;
-			}
-			set
-			{
-				People previousValue = this._People.Entity;
-				if (((previousValue != value) 
-							|| (this._People.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._People.Entity = null;
-						previousValue.Flats.Remove(this);
-					}
-					this._People.Entity = value;
-					if ((value != null))
-					{
-						value.Flats.Add(this);
-						this._OwnerID = value.PeopleID;
-					}
-					else
-					{
-						this._OwnerID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Owner");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Flat1", Storage="_People1", ThisKey="ResidentID", OtherKey="PeopleID", IsForeignKey=true)]
-		public People Resident
-		{
-			get
-			{
-				return this._People1.Entity;
-			}
-			set
-			{
-				People previousValue = this._People1.Entity;
-				if (((previousValue != value) 
-							|| (this._People1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._People1.Entity = null;
-						previousValue.Flats1.Remove(this);
-					}
-					this._People1.Entity = value;
-					if ((value != null))
-					{
-						value.Flats1.Add(this);
-						this._ResidentID = value.PeopleID;
-					}
-					else
-					{
-						this._ResidentID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Resident");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Deposits(Deposit entity)
-		{
-			this.SendPropertyChanging();
-			entity.Flat = this;
-		}
-		
-		private void detach_Deposits(Deposit entity)
-		{
-			this.SendPropertyChanging();
-			entity.Flat = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Deposit")]
-	public partial class Deposit : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Year;
-		
-		private System.Nullable<int> _Month;
-		
-		private System.Nullable<int> _Value;
-		
-		private string _DepositType;
-		
-		private System.Nullable<System.DateTime> _DepositDate;
-		
-		private System.Nullable<int> _FlatID;
-		
-		private int _DepositID;
-		
-		private EntityRef<Flat> _Flat;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnYearChanging(int value);
-    partial void OnYearChanged();
-    partial void OnMonthChanging(System.Nullable<int> value);
-    partial void OnMonthChanged();
-    partial void OnValueChanging(System.Nullable<int> value);
-    partial void OnValueChanged();
-    partial void OnDepositTypeChanging(string value);
-    partial void OnDepositTypeChanged();
-    partial void OnDepositDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDepositDateChanged();
-    partial void OnFlatIDChanging(System.Nullable<int> value);
-    partial void OnFlatIDChanged();
-    partial void OnDepositIDChanging(int value);
-    partial void OnDepositIDChanged();
-    #endregion
-		
-		public Deposit()
-		{
-			this._Flat = default(EntityRef<Flat>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int NOT NULL")]
-		public int Year
-		{
-			get
-			{
-				return this._Year;
-			}
-			set
-			{
-				if ((this._Year != value))
-				{
-					this.OnYearChanging(value);
-					this.SendPropertyChanging();
-					this._Year = value;
-					this.SendPropertyChanged("Year");
-					this.OnYearChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Month", DbType="Int")]
-		public System.Nullable<int> Month
-		{
-			get
-			{
-				return this._Month;
-			}
-			set
-			{
-				if ((this._Month != value))
-				{
-					this.OnMonthChanging(value);
-					this.SendPropertyChanging();
-					this._Month = value;
-					this.SendPropertyChanged("Month");
-					this.OnMonthChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="Int")]
-		public System.Nullable<int> Value
-		{
-			get
-			{
-				return this._Value;
-			}
-			set
-			{
-				if ((this._Value != value))
-				{
-					this.OnValueChanging(value);
-					this.SendPropertyChanging();
-					this._Value = value;
-					this.SendPropertyChanged("Value");
-					this.OnValueChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepositType", DbType="NVarChar(50)")]
-		public string DepositType
-		{
-			get
-			{
-				return this._DepositType;
-			}
-			set
-			{
-				if ((this._DepositType != value))
-				{
-					this.OnDepositTypeChanging(value);
-					this.SendPropertyChanging();
-					this._DepositType = value;
-					this.SendPropertyChanged("DepositType");
-					this.OnDepositTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepositDate", DbType="Date")]
-		public System.Nullable<System.DateTime> DepositDate
-		{
-			get
-			{
-				return this._DepositDate;
-			}
-			set
-			{
-				if ((this._DepositDate != value))
-				{
-					this.OnDepositDateChanging(value);
-					this.SendPropertyChanging();
-					this._DepositDate = value;
-					this.SendPropertyChanged("DepositDate");
-					this.OnDepositDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FlatID", DbType="Int")]
-		public System.Nullable<int> FlatID
-		{
-			get
-			{
-				return this._FlatID;
-			}
-			set
-			{
-				if ((this._FlatID != value))
-				{
-					if (this._Flat.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFlatIDChanging(value);
-					this.SendPropertyChanging();
-					this._FlatID = value;
-					this.SendPropertyChanged("FlatID");
-					this.OnFlatIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepositID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int DepositID
-		{
-			get
-			{
-				return this._DepositID;
-			}
-			set
-			{
-				if ((this._DepositID != value))
-				{
-					this.OnDepositIDChanging(value);
-					this.SendPropertyChanging();
-					this._DepositID = value;
-					this.SendPropertyChanged("DepositID");
-					this.OnDepositIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Flat_Deposit", Storage="_Flat", ThisKey="FlatID", OtherKey="FlatID", IsForeignKey=true)]
-		public Flat Flat
-		{
-			get
-			{
-				return this._Flat.Entity;
-			}
-			set
-			{
-				Flat previousValue = this._Flat.Entity;
-				if (((previousValue != value) 
-							|| (this._Flat.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Flat.Entity = null;
-						previousValue.Deposits.Remove(this);
-					}
-					this._Flat.Entity = value;
-					if ((value != null))
-					{
-						value.Deposits.Add(this);
-						this._FlatID = value.FlatID;
-					}
-					else
-					{
-						this._FlatID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Flat");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }

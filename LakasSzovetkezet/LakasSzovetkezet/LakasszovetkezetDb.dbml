@@ -1,41 +1,41 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Lakaszovetkezet" Class="LakasszovetkezetDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(localdb)\mssqllocaldb;Initial Catalog=Lakaszovetkezet;Integrated Security=True;Pooling=False" SettingsObjectName="LakasSzovetkezet.Properties.Settings" SettingsPropertyName="LakaszovetkezetConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.People" Member="Peoples">
-    <Type Name="People">
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="PeopleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Association Name="People_Flat" Member="Flats" ThisKey="PeopleID" OtherKey="OwnerID" Type="Flat" />
-      <Association Name="People_Flat1" Member="Flats1" ThisKey="PeopleID" OtherKey="ResidentID" Type="Flat" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="lakassql" Class="LakasszovetkezetDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(localdb)\mssqllocaldb;Initial Catalog=lakassql;Integrated Security=True;Pooling=False" SettingsObjectName="LakasSzovetkezet.Properties.Settings" SettingsPropertyName="lakassqlConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Deposit" Member="Deposits">
+    <Type Name="Deposit">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Year" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Month" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Value" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DepositType" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="LakasId" Member="FlatID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DepositDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Flat_Deposit" Member="Flat" ThisKey="FlatID" OtherKey="FlatID" Type="Flat" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Flat" Member="Flats">
     <Type Name="Flat">
-      <Column Name="FlatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FlatId" Member="FlatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Size" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Radiators" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Stairway" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Radiator" Member="Radiators" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Stairway" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Floor" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FlatNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Flatnumber" Member="FlatNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ResidentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="OwnerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Flat_Deposit" Member="Deposits" ThisKey="FlatID" OtherKey="FlatID" Type="Deposit" />
-      <Association Name="People_Flat" Member="Owner" Storage="_People" ThisKey="OwnerID" OtherKey="PeopleID" Type="People" IsForeignKey="true" />
-      <Association Name="People_Flat1" Member="Resident" Storage="_People1" ThisKey="ResidentID" OtherKey="PeopleID" Type="People" IsForeignKey="true" />
+      <Association Name="People_Flat" Member="Owner" ThisKey="OwnerID" OtherKey="PeopleId" Type="People" IsForeignKey="true" />
+      <Association Name="People_Flat1" Member="Resident" ThisKey="ResidentID" OtherKey="PeopleId" Type="People" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Deposit" Member="Deposits">
-    <Type Name="Deposit">
-      <Column Name="Year" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Month" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Value" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DepositType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DepositDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FlatID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DepositID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Association Name="Flat_Deposit" Member="Flat" ThisKey="FlatID" OtherKey="FlatID" Type="Flat" IsForeignKey="true" />
+  <Table Name="dbo.People" Member="Peoples">
+    <Type Name="People">
+      <Column Name="PeopleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="People_Flat" Member="Flats" ThisKey="PeopleId" OtherKey="OwnerID" Type="Flat" />
+      <Association Name="People_Flat1" Member="Flats1" ThisKey="PeopleId" OtherKey="ResidentID" Type="Flat" />
     </Type>
   </Table>
 </Database>
