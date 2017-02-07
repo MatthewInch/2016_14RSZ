@@ -2,43 +2,43 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LakasszovetkezetDb">
   <DataContextMoniker Name="/LakasszovetkezetDbDataContext" />
   <nestedChildShapes>
-    <classShape Id="6faa467f-7d89-4e93-be60-9253aec82567" absoluteBounds="3, 0.875, 2, 1.7708968098958329">
-      <DataClassMoniker Name="/LakasszovetkezetDbDataContext/People" />
-      <nestedChildShapes>
-        <elementListCompartment Id="623ab6b6-ad11-4e6b-9167-04f6421050a3" absoluteBounds="3.015, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="de15c6fb-b818-433f-8d7b-2ba71b5ee815" absoluteBounds="5.75, 0.625, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/LakasszovetkezetDbDataContext/Flat" />
-      <nestedChildShapes>
-        <elementListCompartment Id="a6dae357-8cc7-4fe5-b3e6-40d497bf4f8a" absoluteBounds="5.7650000000000006, 1.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(5 : 1.76044840494792); (5.75 : 1.76044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/LakasszovetkezetDbDataContext/People/People_Flat" />
-      <nodes>
-        <classShapeMoniker Id="6faa467f-7d89-4e93-be60-9253aec82567" />
-        <classShapeMoniker Id="de15c6fb-b818-433f-8d7b-2ba71b5ee815" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5 : 1.25522420247396); (5.75 : 1.25522420247396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/LakasszovetkezetDbDataContext/People/People_Flat1" />
-      <nodes>
-        <classShapeMoniker Id="6faa467f-7d89-4e93-be60-9253aec82567" />
-        <classShapeMoniker Id="de15c6fb-b818-433f-8d7b-2ba71b5ee815" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="3425324e-1f28-4305-a4b7-a60b803bbcda" absoluteBounds="5.125, 4.125, 2, 2.1554996744791666">
+    <classShape Id="a65d8565-7601-43ff-b856-76acff186b86" absoluteBounds="4.5, 0.875, 2, 2.1554996744791666">
       <DataClassMoniker Name="/LakasszovetkezetDbDataContext/Deposit" />
       <nestedChildShapes>
-        <elementListCompartment Id="53255962-858a-4e0c-9e42-aa116e761ed1" absoluteBounds="5.14, 4.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5a7d7c80-bc09-400b-bd87-cfa0b4a5965c" absoluteBounds="4.5150000000000006, 1.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.4375 : 2.97280110677083); (6.4375 : 4.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <classShape Id="3d72ba08-90c5-4227-b11e-9d58742a04d6" absoluteBounds="1.125, 2.125, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/LakasszovetkezetDbDataContext/Flat" />
+      <nestedChildShapes>
+        <elementListCompartment Id="db2c6d7e-ee60-4fda-84c1-010369679e85" absoluteBounds="1.1399999999999997, 2.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.125 : 2.57774983723958); (4.5 : 2.57774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/LakasszovetkezetDbDataContext/Flat/Flat_Deposit" />
       <nodes>
-        <classShapeMoniker Id="de15c6fb-b818-433f-8d7b-2ba71b5ee815" />
-        <classShapeMoniker Id="3425324e-1f28-4305-a4b7-a60b803bbcda" />
+        <classShapeMoniker Id="3d72ba08-90c5-4227-b11e-9d58742a04d6" />
+        <classShapeMoniker Id="a65d8565-7601-43ff-b856-76acff186b86" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="03ca00f6-e0e1-45ab-a345-55d2cee56b80" absoluteBounds="5.125, 4.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/LakasszovetkezetDbDataContext/People" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3a09454d-e73f-41a1-9e29-080315146a1f" absoluteBounds="5.14, 5.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.125 : 5.76044840494792); (2.125 : 5.76044840494792); (2.125 : 4.47280110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LakasszovetkezetDbDataContext/People/People_Flat" />
+      <nodes>
+        <classShapeMoniker Id="03ca00f6-e0e1-45ab-a345-55d2cee56b80" />
+        <classShapeMoniker Id="3d72ba08-90c5-4227-b11e-9d58742a04d6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.125 : 5.28647170247396); (2.6562525 : 5.28647170247396); (2.6562525 : 4.47280110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LakasszovetkezetDbDataContext/People/People_Flat1" />
+      <nodes>
+        <classShapeMoniker Id="03ca00f6-e0e1-45ab-a345-55d2cee56b80" />
+        <classShapeMoniker Id="3d72ba08-90c5-4227-b11e-9d58742a04d6" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
