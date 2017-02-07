@@ -118,16 +118,24 @@ namespace LakasSzovetkezet
             var selectedFlat = cbFlat.SelectedItem as ComboHelper;
             AccessDatabaseWithAction(selectedFlat, (LakasszovetkezetDbDataContext context, Flat flat) =>
             {
-                var newDepositValue = new Deposit();
-                newDepositValue.Flat = flat;
-                newDepositValue.DepositDate = DateTime.Now;
-                newDepositValue.DepositType = "Átutalás";
-                newDepositValue.Month = 2;
-                newDepositValue.Value = _currentPrice;
-                newDepositValue.Year = 2016;
-                context.Deposits.InsertOnSubmit(newDepositValue);
-                context.SubmitChanges();
+                for (int i = 0; i < flowLayoutPanel1.Controls.Count; i++)
+                {
+                    if ((flowLayoutPanel1.Controls[i] as CheckBox).Checked && (flowLayoutPanel1.Controls[i] as CheckBox).Enabled)
+                    {
+                        var newDepositValue = new Deposit();
+                        newDepositValue.Flat = flat;
+                        newDepositValue.DepositDate = DateTime.Now;
+                        newDepositValue.DepositType = "Átutalás";
+                        newDepositValue.Month = i+1;
+                        newDepositValue.Value = _currentPrice;
+                        newDepositValue.Year = 2016;
+                        context.Deposits.InsertOnSubmit(newDepositValue);
+                        context.SubmitChanges();
+                    }
+                }
+                
             });
+            MessageBox.Show("sikeres befizetés!");
         }
     }
 }
