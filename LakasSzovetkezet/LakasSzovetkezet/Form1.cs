@@ -22,5 +22,21 @@ namespace LakasSzovetkezet
             var newDepositForm = new NewDeposit();
             newDepositForm.Show();
         }
+        
+        private void btReport_Click(object sender, EventArgs e)
+        {
+            using (var context = new LakasszovetkezetDbDataContext())
+            {
+                 var items = from item in context.Deposits
+                            select new { DepositID = item.DepositID, DepositDate = item.DepositDate, DepositType = item.DepositType, FlatID = item.FlatID,Year=item.Year,Month=item.Month,Value=item.Value,Stairway=item.Flat.Stairway,};
+                foreach (var item in items)
+                {
+                    Console.WriteLine(item.DepositID+";"+);
+                }
+            }
+            
+           
+        }
+       
     }
 }
