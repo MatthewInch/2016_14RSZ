@@ -42,7 +42,7 @@ namespace LakasSzovetkezet
     #endregion
 		
 		public LakasszovetkezetDbDataContext() : 
-				base(global::LakasSzovetkezet.Properties.Settings.Default.LakasSzovetkezetConnectionString, mappingSource)
+				base(global::LakasSzovetkezet.Properties.Settings.Default.LakaszovetkezetConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

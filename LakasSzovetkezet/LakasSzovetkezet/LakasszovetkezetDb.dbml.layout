@@ -8,10 +8,10 @@
         <elementListCompartment Id="acf39a64-902b-4773-b297-e0c57d9032ff" absoluteBounds="6.265, 1.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="260e30cf-cef3-49f9-9537-4f6a28b045f9" absoluteBounds="3.5, 1, 2, 2.3478011067708335">
+    <classShape Id="260e30cf-cef3-49f9-9537-4f6a28b045f9" absoluteBounds="3.875, 1.125, 2, 2.3478011067708335">
       <DataClassMoniker Name="/LakasszovetkezetDbDataContext/Flat" />
       <nestedChildShapes>
-        <elementListCompartment Id="93973b4e-6be3-4d4d-b1eb-791e4490381f" absoluteBounds="3.515, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="93973b4e-6be3-4d4d-b1eb-791e4490381f" absoluteBounds="3.89, 1.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="3270e7e4-b963-48f7-9187-e9247a34adc6" absoluteBounds="0.75, 1.25, 2, 1.7708968098958329">
@@ -20,21 +20,21 @@
         <elementListCompartment Id="516df56f-7897-4965-a3ee-e452aac61fe8" absoluteBounds="0.765, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 2.07774983723958); (6.25 : 2.07774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.875 : 2.14024983723958); (6.25 : 2.14024983723958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LakasszovetkezetDbDataContext/Flat/Flat_Deposit" />
       <nodes>
         <classShapeMoniker Id="260e30cf-cef3-49f9-9537-4f6a28b045f9" />
         <classShapeMoniker Id="81e3b5a7-fa4f-4b13-bc48-2b33595c4c88" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.13544840494792); (3.5 : 2.13544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.13544840494792); (3.875 : 2.13544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LakasszovetkezetDbDataContext/People/People_Flat" />
       <nodes>
         <classShapeMoniker Id="3270e7e4-b963-48f7-9187-e9247a34adc6" />
         <classShapeMoniker Id="260e30cf-cef3-49f9-9537-4f6a28b045f9" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 1.63022420247396); (3.5 : 1.63022420247396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 1.63022420247396); (3.875 : 1.63022420247396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LakasszovetkezetDbDataContext/People/People_Flat1" />
       <nodes>
         <classShapeMoniker Id="3270e7e4-b963-48f7-9187-e9247a34adc6" />

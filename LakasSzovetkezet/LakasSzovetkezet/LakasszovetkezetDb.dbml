@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LakasSzovetkezet" Class="LakasszovetkezetDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database\LakasSzovetkezet.mdf;Integrated Security=True" SettingsObjectName="LakasSzovetkezet.Properties.Settings" SettingsPropertyName="LakasSzovetkezetConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(localdb)\mssqllocaldb;Initial Catalog=Lakaszovetkezet;Integrated Security=True;Pooling=False" SettingsObjectName="LakasSzovetkezet.Properties.Settings" SettingsPropertyName="LakaszovetkezetConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Deposit" Member="Deposits">
     <Type Name="Deposit">
       <Column Name="Year" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
